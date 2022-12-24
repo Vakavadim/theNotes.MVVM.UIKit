@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wYW-NP-Icy">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Folders View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="FoldersViewController" customModule="theNotes_MVVM_UIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Q3d-Ou-cBM">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Yya-cY-D7l"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="xhA-ux-Av6"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fU-R7-cXi">
+                                <rect key="frame" x="0.0" y="767" width="392" height="46"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <barButtonItem image="folder.fill.badge.plus" catalog="system" id="LXf-9f-9U7">
+                                        <connections>
+                                            <action selector="addFolder:" destination="BYZ-38-t0r" id="VBR-lH-ZMh"/>
+                                            <segue destination="zMA-0b-1bZ" kind="showDetail" id="3sC-YP-VTP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="cGQ-ij-9VS"/>
+                                    <barButtonItem image="square.and.pencil" catalog="system" id="mlb-HE-HNo">
+                                        <connections>
+                                            <action selector="addNote:" destination="BYZ-38-t0r" id="wya-qK-UPM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Q3d-Ou-cBM" secondAttribute="bottom" id="3du-cA-3CI"/>
+                            <constraint firstItem="Q3d-Ou-cBM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="I3f-mm-mk8"/>
+                            <constraint firstItem="Q3d-Ou-cBM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZeZ-mm-nPi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Q3d-Ou-cBM" secondAttribute="trailing" id="wju-4v-PW8"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="zQE-8X-nNR">
+                        <barButtonItem key="rightBarButtonItem" title="Править" id="mHh-qr-N5a">
+                            <connections>
+                                <action selector="editButton:" destination="BYZ-38-t0r" id="UDq-iV-3Am"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="Q3d-Ou-cBM" id="vS0-WA-NCR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="859" y="-2"/>
+        </scene>
+        <!--Edit Folder View Controller-->
+        <scene sceneID="fel-ET-Syj">
+            <objects>
+                <viewController id="zMA-0b-1bZ" customClass="EditFolderViewController" customModule="theNotes_MVVM_UIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uw4-rO-62F">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vg-WE-XbY">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <items>
+                                    <navigationItem title="Новая папка" largeTitleDisplayMode="never" id="QWc-QN-3no">
+                                        <barButtonItem key="leftBarButtonItem" title="Отменить" id="iLj-4z-Pba">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="zMA-0b-1bZ" id="kPx-Vj-HbV"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Готово" id="qRo-Ks-oAF">
+                                            <connections>
+                                                <action selector="doneButton:" destination="zMA-0b-1bZ" id="BoJ-AS-tPt"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="z9P-HM-c5Q">
+                                <rect key="frame" x="16" y="75" width="361" height="361"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="18" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="86G-gU-Cwh">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="rR7-Y7-PkN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AsY-XC-B1H">
+                                        <rect key="frame" x="0.0" y="56" width="361" height="305"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BjK-dX-OZw">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FolderImageCell" id="1Zq-ys-Jvv" customClass="FolderImageCell" customModule="theNotes_MVVM_UIKit" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="44x-iy-gRM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mg5-Wk-NFt">
+                                                            <rect key="frame" x="39.333333333333329" y="45" width="49.333333333333329" height="38"/>
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="28" scale="large"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="mg5-Wk-NFt" firstAttribute="centerY" secondItem="44x-iy-gRM" secondAttribute="centerY" id="CKV-Su-dpO"/>
+                                                        <constraint firstItem="mg5-Wk-NFt" firstAttribute="centerX" secondItem="44x-iy-gRM" secondAttribute="centerX" id="RF1-eQ-jhe"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="imageView" destination="mg5-Wk-NFt" id="vhR-cx-O3z"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="zMA-0b-1bZ" id="tON-gg-H2r"/>
+                                            <outlet property="delegate" destination="zMA-0b-1bZ" id="ZbJ-PP-nXS"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="z9P-HM-c5Q" secondAttribute="height" multiplier="1:1" id="nKj-iP-0Uz"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YTq-Jm-Uiw"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="z9P-HM-c5Q" firstAttribute="top" secondItem="9vg-WE-XbY" secondAttribute="top" constant="75" id="Au8-TJ-Uuh"/>
+                            <constraint firstAttribute="trailing" secondItem="9vg-WE-XbY" secondAttribute="trailing" id="DF1-Jj-Fmu"/>
+                            <constraint firstItem="z9P-HM-c5Q" firstAttribute="leading" secondItem="YTq-Jm-Uiw" secondAttribute="leading" constant="16" id="ZdA-kj-Ulz"/>
+                            <constraint firstItem="9vg-WE-XbY" firstAttribute="leading" secondItem="uw4-rO-62F" secondAttribute="leading" id="gVz-vV-gVn"/>
+                            <constraint firstItem="YTq-Jm-Uiw" firstAttribute="trailing" secondItem="z9P-HM-c5Q" secondAttribute="trailing" constant="16" id="gWd-ec-gNY"/>
+                            <constraint firstItem="9vg-WE-XbY" firstAttribute="top" secondItem="uw4-rO-62F" secondAttribute="top" id="jK4-tx-yUP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="AsY-XC-B1H" id="d4b-Rz-KAL"/>
+                        <outlet property="folderNameTextField" destination="86G-gU-Cwh" id="B82-bE-6fA"/>
+                        <outlet property="navigationBar" destination="QWc-QN-3no" id="0Sh-wd-s48"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z8q-Ou-xWd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="859" y="748"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dBC-09-4gV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wYW-NP-Icy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kxe-wU-8JB">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="wYW-NP-Icy" id="fwY-jI-ZT1"/>
+                        </connections>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="AD2-HP-DZZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ebi-Qb-gQR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="126" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="folder.fill" catalog="system" width="128" height="96"/>
+        <image name="folder.fill.badge.plus" catalog="system" width="128" height="92"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
