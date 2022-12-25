@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E035A7A229565A90003D2AB3 /* EditFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E035A7A129565A90003D2AB3 /* EditFolderViewController.swift */; };
+		E035A7A229565A90003D2AB3 /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E035A7A129565A90003D2AB3 /* AddFolderViewController.swift */; };
 		E07942032954A9C1005A0CC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07942022954A9C1005A0CC2 /* AppDelegate.swift */; };
 		E07942052954A9C1005A0CC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07942042954A9C1005A0CC2 /* SceneDelegate.swift */; };
 		E07942072954A9C1005A0CC2 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07942062954A9C1005A0CC2 /* FoldersViewController.swift */; };
@@ -30,12 +30,13 @@
 		E079423F2954B52F005A0CC2 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079423E2954B52F005A0CC2 /* StorageManager.swift */; };
 		E07942412954C204005A0CC2 /* NotesFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07942402954C204005A0CC2 /* NotesFolder.swift */; };
 		E07942432954C233005A0CC2 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07942422954C233005A0CC2 /* Note.swift */; };
-		E0FDB49D2957595000350864 /* EditFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FDB49C2957595000350864 /* EditFolderViewModel.swift */; };
+		E0FDB49D2957595000350864 /* AddFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FDB49C2957595000350864 /* AddFolderViewModel.swift */; };
 		E0FDB4A029575AA700350864 /* FolderImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FDB49F29575AA700350864 /* FolderImageCell.swift */; };
+		E0FDB4A42957810000350864 /* FolderImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FDB4A32957810000350864 /* FolderImageCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E035A7A129565A90003D2AB3 /* EditFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderViewController.swift; sourceTree = "<group>"; };
+		E035A7A129565A90003D2AB3 /* AddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewController.swift; sourceTree = "<group>"; };
 		E07941FF2954A9C1005A0CC2 /* theNotes.MVVM.UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theNotes.MVVM.UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07942022954A9C1005A0CC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E07942042954A9C1005A0CC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,8 +59,9 @@
 		E079423E2954B52F005A0CC2 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E07942402954C204005A0CC2 /* NotesFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesFolder.swift; sourceTree = "<group>"; };
 		E07942422954C233005A0CC2 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		E0FDB49C2957595000350864 /* EditFolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderViewModel.swift; sourceTree = "<group>"; };
+		E0FDB49C2957595000350864 /* AddFolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewModel.swift; sourceTree = "<group>"; };
 		E0FDB49F29575AA700350864 /* FolderImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderImageCell.swift; sourceTree = "<group>"; };
+		E0FDB4A32957810000350864 /* FolderImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderImageCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,14 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E035A7A029565A17003D2AB3 /* EditFolderView */ = {
+		E035A7A029565A17003D2AB3 /* AddFolderView */ = {
 			isa = PBXGroup;
 			children = (
-				E035A7A129565A90003D2AB3 /* EditFolderViewController.swift */,
-				E0FDB49C2957595000350864 /* EditFolderViewModel.swift */,
+				E035A7A129565A90003D2AB3 /* AddFolderViewController.swift */,
+				E0FDB49C2957595000350864 /* AddFolderViewModel.swift */,
 				E0FDB49E295759D700350864 /* FolderImageCell */,
 			);
-			path = EditFolderView;
+			path = AddFolderView;
 			sourceTree = "<group>";
 		};
 		E07941F62954A9C1005A0CC2 = {
@@ -128,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				E079421C2954AD2E005A0CC2 /* FoldersView */,
-				E035A7A029565A17003D2AB3 /* EditFolderView */,
+				E035A7A029565A17003D2AB3 /* AddFolderView */,
 				E07942262954AEA2005A0CC2 /* NotesListView */,
 				E07942322954B006005A0CC2 /* NoteDetailView */,
 			);
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				E0FDB49F29575AA700350864 /* FolderImageCell.swift */,
+				E0FDB4A32957810000350864 /* FolderImageCellViewModel.swift */,
 			);
 			path = FolderImageCell;
 			sourceTree = "<group>";
@@ -309,7 +312,7 @@
 				E07942312954AF9F005A0CC2 /* NoteCellViewModel.swift in Sources */,
 				E079421E2954AD77005A0CC2 /* FoldersViewModel.swift in Sources */,
 				E07942072954A9C1005A0CC2 /* FoldersViewController.swift in Sources */,
-				E0FDB49D2957595000350864 /* EditFolderViewModel.swift in Sources */,
+				E0FDB49D2957595000350864 /* AddFolderViewModel.swift in Sources */,
 				E07942252954ADF3005A0CC2 /* FolderCellViewModel.swift in Sources */,
 				E07942032954A9C1005A0CC2 /* AppDelegate.swift in Sources */,
 				E07942432954C233005A0CC2 /* Note.swift in Sources */,
@@ -318,10 +321,11 @@
 				E0FDB4A029575AA700350864 /* FolderImageCell.swift in Sources */,
 				E07942362954B06C005A0CC2 /* NoteDetailViewController.swift in Sources */,
 				E07942222954ADD2005A0CC2 /* FolderCell.swift in Sources */,
-				E035A7A229565A90003D2AB3 /* EditFolderViewController.swift in Sources */,
+				E035A7A229565A90003D2AB3 /* AddFolderViewController.swift in Sources */,
 				E07942382954B084005A0CC2 /* NoteViewModel.swift in Sources */,
 				E079422E2954AF86005A0CC2 /* NoteCell.swift in Sources */,
 				E07942052954A9C1005A0CC2 /* SceneDelegate.swift in Sources */,
+				E0FDB4A42957810000350864 /* FolderImageCellViewModel.swift in Sources */,
 				E07942282954AF08005A0CC2 /* NotesListViewController.swift in Sources */,
 				E079423F2954B52F005A0CC2 /* StorageManager.swift in Sources */,
 			);

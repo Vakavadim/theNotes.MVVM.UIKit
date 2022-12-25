@@ -7,17 +7,17 @@
 
 import Foundation
 
-protocol EditFolderViewModelProtocol {
-    var viewModelDidChange: ((EditFolderViewModelProtocol) -> Void)? { get set }
+protocol AddFolderViewModelProtocol {
+    var viewModelDidChange: ((AddFolderViewModelProtocol) -> Void)? { get set }
     var selectedImage: String { get set }
     func getImages()
     func imageDidSelected(at indexPath: IndexPath)
     func getItemsCount() -> Int
-    func getFolderImage(at indexPath: IndexPath) -> String
+    func getFolderImageCellViewModel(at indexPath: IndexPath) -> FolderImageCellViewModelProtocol
     func saveFolder(folderName: String)
 }
 
-class EditFolderViewModel: EditFolderViewModelProtocol {
+class AddFolderViewModel: AddFolderViewModelProtocol {
     
     private var images: [String] = [] {
         didSet {
@@ -27,19 +27,20 @@ class EditFolderViewModel: EditFolderViewModelProtocol {
     
     private var defaultImage = "folder.fill"
     
-    var viewModelDidChange: ((EditFolderViewModelProtocol) -> Void)?
+    var viewModelDidChange: ((AddFolderViewModelProtocol) -> Void)?
     
     var selectedImage: String {
         get {
             defaultImage
         } set {
             defaultImage = newValue
-            viewModelDidChange?(self)
+//            viewModelDidChange?(self)
+            print("new value \(newValue)")
         }
     }
 
     func imageDidSelected(at indexPath: IndexPath) {
-        selectedImage = images[indexPath.item]
+        self.selectedImage = images[indexPath.item]
     }
     
     func getImages() {
@@ -50,8 +51,11 @@ class EditFolderViewModel: EditFolderViewModelProtocol {
         images.count
     }
     
-    func getFolderImage(at indexPath: IndexPath) -> String {
-        images[indexPath.item]
+    func getFolderImageCellViewModel(at indexPath: IndexPath) -> FolderImageCellViewModelProtocol {
+        let imageString = images[indexPath.item]
+        let isSelected = imageString == selectedImage
+        let viewModel = FolderImageCellViewModel(image: imageString, isSelected: isSelected)
+        return viewModel
     }
     
     func saveFolder(folderName: String) {

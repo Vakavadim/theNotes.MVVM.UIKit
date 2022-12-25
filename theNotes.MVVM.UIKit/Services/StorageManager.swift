@@ -16,7 +16,7 @@ final class StorageManager {
     let realm = try! Realm()
     
     var folderImages: [String] = [
-        "folder.fill", "square.and.arrow.up.trianglebadge.exclamationmark",
+        "folder.fill", "studentdesk",
         "star.fill", "list.star", "person.badge.key", "camera.macro.circle",
         "globe.americas", "airplane.departure", "car", "cart", "brain.head.profile",
         "bolt", "giftcard.fill", "creditcard.and.123", "heart.text.square"
@@ -28,12 +28,27 @@ final class StorageManager {
         }
     }
     
+    func renameFolder(_ notesFolder: NotesFolder, with newFolderName: String) {
+        try! realm.write {
+            notesFolder.folderName = newFolderName
+        }
+    }
+    
+    func deleteFolder(_ notesFolder: NotesFolder) {
+        try! realm.write {
+            let notes = notesFolder.notes
+            realm.delete(notes)
+            realm.delete(notesFolder)
+        }
+    }
+    
     func saveNote(_ note: Note, for notesFolder: NotesFolder) {
         try! realm.write {
             notesFolder.notes.append(note)
             print("add new note")
         }
     }
+    
     
     func setStartFolder(exactCountOfNote: Int) {
         if exactCountOfNote == 0 {

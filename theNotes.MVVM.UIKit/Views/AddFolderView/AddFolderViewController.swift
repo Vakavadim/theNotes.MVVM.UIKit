@@ -1,5 +1,5 @@
 //
-//  EditFolderViewController.swift
+//  AddFolderViewController.swift
 //  theNotes.MVVM.UIKit
 //
 //  Created by Вадим Гамзаев on 24.12.2022.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-class EditFolderViewController: UIViewController {
+class AddFolderViewController: UIViewController {
     
     
     @IBOutlet weak var folderNameTextField: UITextField!
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var viewModel: EditFolderViewModelProtocol! {
+    private var viewModel: AddFolderViewModelProtocol! {
         didSet {
             viewModel.getImages()
             viewModel.viewModelDidChange = { [unowned self] viewModel in
@@ -24,9 +24,11 @@ class EditFolderViewController: UIViewController {
         }
     }
     
+    weak var delegate: FoldersViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = EditFolderViewModel()
+        viewModel = AddFolderViewModel()
         folderNameTextField.text = navigationBar.title
     }
     
@@ -42,11 +44,13 @@ class EditFolderViewController: UIViewController {
     @IBAction func doneButton(_ sender: Any) {
         guard let folderName = folderNameTextField.text else { return }
         viewModel.saveFolder(folderName: folderName)
+        delegate?.reloadTableViewData()
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-extension EditFolderViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension AddFolderViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.getItemsCount()
     }
@@ -54,17 +58,19 @@ extension EditFolderViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FolderImageCell", for: indexPath)
         guard let cell = cell as? FolderImageCell else { return UICollectionViewCell() }
-        cell.folderImageName = viewModel.getFolderImage(at: indexPath)
+        cell.viewModel = viewModel.getFolderImageCellViewModel(at: indexPath)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.imageDidSelected(at: indexPath)
+        collectionView.reloadData()
+        print("\(indexPath)")
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension EditFolderViewController: UICollectionViewDelegateFlowLayout {
+extension AddFolderViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemsPerRow: CGFloat = 6

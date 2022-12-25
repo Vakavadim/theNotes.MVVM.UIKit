@@ -26,14 +26,14 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fU-R7-cXi">
-                                <rect key="frame" x="0.0" y="767" width="392" height="46"/>
+                                <rect key="frame" x="-2" y="767" width="392" height="46"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem image="folder.fill.badge.plus" catalog="system" id="LXf-9f-9U7">
                                         <connections>
                                             <action selector="addFolder:" destination="BYZ-38-t0r" id="VBR-lH-ZMh"/>
-                                            <segue destination="zMA-0b-1bZ" kind="showDetail" id="3sC-YP-VTP"/>
+                                            <segue destination="zMA-0b-1bZ" kind="showDetail" identifier="AddFolder" id="3sC-YP-VTP"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cGQ-ij-9VS"/>
@@ -64,17 +64,35 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="editButton" destination="mHh-qr-N5a" id="Oxh-lp-auV"/>
                         <outlet property="tableView" destination="Q3d-Ou-cBM" id="vS0-WA-NCR"/>
+                        <segue destination="HQ0-6z-2rH" kind="show" identifier="ShowNotes" id="XsI-kL-tkT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="859" y="-2"/>
         </scene>
-        <!--Edit Folder View Controller-->
+        <!--Notes List View Controller-->
+        <scene sceneID="rbe-I9-4ND">
+            <objects>
+                <viewController id="HQ0-6z-2rH" customClass="NotesListViewController" customModule="theNotes_MVVM_UIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L64-ZD-8xy">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="mq2-5g-fPM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Iuu-6r-Xax"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oZ9-yS-wqJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1611" y="-2"/>
+        </scene>
+        <!--Add Folder View Controller-->
         <scene sceneID="fel-ET-Syj">
             <objects>
-                <viewController id="zMA-0b-1bZ" customClass="EditFolderViewController" customModule="theNotes_MVVM_UIKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zMA-0b-1bZ" customClass="AddFolderViewController" customModule="theNotes_MVVM_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uw4-rO-62F">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -7,16 +7,20 @@
 
 import UIKit
 
+protocol FoldersViewControllerDelegate: AnyObject {
+    func reloadTableViewData()
+}
+
 class FoldersViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     private var viewModel: FoldersViewModelProtocol! {
         didSet {
-            viewModel.getNotesFolder()
+            viewModel.getNotesFolders()
             viewModel.setStartedFolder()
             viewModel.viewModelDidChange = { [unowned self] viewModel in
-                self.viewModel = viewModel
                 tableView.reloadData()
             }
         }
@@ -30,6 +34,7 @@ class FoldersViewController: UIViewController {
     }
     
     @IBAction func editButton(_ sender: Any) {
+        turnEditing()
     }
     @IBAction func addFolder(_ sender: Any) {
     }
@@ -45,6 +50,28 @@ class FoldersViewController: UIViewController {
         let nib = UINib(nibName: "FolderCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FolderCell")
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddFolder" {
+            guard let editFolderVC = segue.destination as? AddFolderViewController else { return }
+            editFolderVC.delegate = self
+        } else if segue.identifier == "ShowNotes" {
+            guard let notesListVC = segue.destination as? NotesListViewController else { return }
+            notesListVC.viewModel = sender as? NotesListViewModelProtocol
+        }
+    }
+    
+    func turnEditing() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            if self.tableView.isEditing {
+                self.editButton.title = "Править"
+                self.tableView.isEditing = false
+            } else {
+                self.editButton.title = "Готово"
+                self.tableView.isEditing = true
+            }
+        }, completion: nil)
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -55,10 +82,33 @@ extension FoldersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell()
         let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath)
         guard let cell = cell as? FolderCell else { return UITableViewCell() }
         cell.viewModel = viewModel.getFolderCellViewModel(at: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let selectedFolder = viewModel.getCurrentFolder(at: indexPath)
+        let viewModel = NotesListViewModel(notesFolder: selectedFolder)
+        performSegue(withIdentifier: "ShowNotes", sender: viewModel)
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = viewModel.deleteAction(at: indexPath)
+        let rename = viewModel.renameAction(at: indexPath, viewController: self)
+        
+        let swipe = UISwipeActionsConfiguration(actions: [delete, rename])
+        swipe.performsFirstActionWithFullSwipe = false
+        return swipe
+    }
+}
+
+// MARK: - FoldersViewControllerDelegate
+extension FoldersViewController: FoldersViewControllerDelegate {
+    func reloadTableViewData() {
+        viewModel.getNotesFolders()
+        tableView.reloadData()
     }
 }
