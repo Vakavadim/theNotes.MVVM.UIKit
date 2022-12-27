@@ -17,17 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Q3d-Ou-cBM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Q3d-Ou-cBM">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Yya-cY-D7l"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="xhA-ux-Av6"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fU-R7-cXi">
-                                <rect key="frame" x="-2" y="767" width="392" height="46"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fU-R7-cXi">
+                                <rect key="frame" x="0.0" y="769" width="393" height="49"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem image="folder.fill.badge.plus" catalog="system" id="LXf-9f-9U7">
@@ -40,6 +38,7 @@
                                     <barButtonItem image="square.and.pencil" catalog="system" id="mlb-HE-HNo">
                                         <connections>
                                             <action selector="addNote:" destination="BYZ-38-t0r" id="wya-qK-UPM"/>
+                                            <segue destination="Isr-f3-lBW" kind="show" identifier="AddNote" id="tiU-Ub-xHZ"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -49,8 +48,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Q3d-Ou-cBM" secondAttribute="bottom" id="3du-cA-3CI"/>
+                            <constraint firstItem="7fU-R7-cXi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4qm-ua-Okf"/>
                             <constraint firstItem="Q3d-Ou-cBM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="I3f-mm-mk8"/>
                             <constraint firstItem="Q3d-Ou-cBM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZeZ-mm-nPi"/>
+                            <constraint firstAttribute="trailing" secondItem="7fU-R7-cXi" secondAttribute="trailing" id="jMZ-ac-JLg"/>
+                            <constraint firstAttribute="bottom" secondItem="7fU-R7-cXi" secondAttribute="bottom" constant="34" id="mON-fo-dez"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Q3d-Ou-cBM" secondAttribute="trailing" id="wju-4v-PW8"/>
                         </constraints>
                     </view>
@@ -80,14 +82,100 @@
                     <view key="view" contentMode="scaleToFill" id="L64-ZD-8xy">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wek-ya-wTv">
+                                <rect key="frame" x="0.0" y="103" width="393" height="671"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="HQ0-6z-2rH" id="3wh-76-hwj"/>
+                                    <outlet property="delegate" destination="HQ0-6z-2rH" id="DvE-YV-7zV"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hP6-32-gcL">
+                                <rect key="frame" x="0.0" y="774" width="393" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jan-6K-AD5"/>
+                                    <barButtonItem image="square.and.pencil" catalog="system" id="abR-OZ-Ndh">
+                                        <connections>
+                                            <segue destination="Isr-f3-lBW" kind="show" identifier="AddNote2" id="ITP-S3-vpw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="mq2-5g-fPM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hP6-32-gcL" firstAttribute="top" secondItem="wek-ya-wTv" secondAttribute="bottom" id="7bh-Uf-JDN"/>
+                            <constraint firstItem="wek-ya-wTv" firstAttribute="leading" secondItem="mq2-5g-fPM" secondAttribute="leading" id="8LD-sn-yfd"/>
+                            <constraint firstItem="mq2-5g-fPM" firstAttribute="trailing" secondItem="wek-ya-wTv" secondAttribute="trailing" id="h7a-ce-U7N"/>
+                            <constraint firstItem="hP6-32-gcL" firstAttribute="leading" secondItem="L64-ZD-8xy" secondAttribute="leading" id="sFR-fK-Tci"/>
+                            <constraint firstAttribute="bottom" secondItem="hP6-32-gcL" secondAttribute="bottom" constant="34" id="vwc-RB-Wu1"/>
+                            <constraint firstItem="wek-ya-wTv" firstAttribute="top" secondItem="mq2-5g-fPM" secondAttribute="top" id="wUp-ve-686"/>
+                            <constraint firstAttribute="trailing" secondItem="hP6-32-gcL" secondAttribute="trailing" id="yCf-Kf-dX1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Iuu-6r-Xax"/>
+                    <connections>
+                        <outlet property="tableView" destination="wek-ya-wTv" id="wkE-O4-OtB"/>
+                        <segue destination="Isr-f3-lBW" kind="show" identifier="ShowNote" id="7l0-uy-YnZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZ9-yS-wqJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1611" y="-2"/>
+            <point key="canvasLocation" x="1636" y="-2"/>
+        </scene>
+        <!--Note Detail View Controller-->
+        <scene sceneID="FMQ-O5-m5s">
+            <objects>
+                <viewController id="Isr-f3-lBW" customClass="NoteDetailViewController" customModule="theNotes_MVVM_UIKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Hw-6o-wPS">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Название заметки" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2LX-ev-TnH">
+                                <rect key="frame" x="16" y="119" width="361" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="mzj-sd-qp7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NuM-2G-Ys8">
+                                <rect key="frame" x="16" y="171" width="361" height="598"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <mutableString key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <attributes>
+                                            <color key="NSColor" systemColor="labelColor"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DC4-UO-xp5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DC4-UO-xp5" firstAttribute="trailing" secondItem="2LX-ev-TnH" secondAttribute="trailing" constant="16" id="E26-aG-fiB"/>
+                            <constraint firstItem="2LX-ev-TnH" firstAttribute="top" secondItem="DC4-UO-xp5" secondAttribute="top" constant="16" id="FpS-F4-tX7"/>
+                            <constraint firstItem="DC4-UO-xp5" firstAttribute="trailing" secondItem="NuM-2G-Ys8" secondAttribute="trailing" constant="16" id="GXZ-P1-BfP"/>
+                            <constraint firstItem="2LX-ev-TnH" firstAttribute="leading" secondItem="DC4-UO-xp5" secondAttribute="leading" constant="16" id="HAZ-J8-w2l"/>
+                            <constraint firstItem="DC4-UO-xp5" firstAttribute="bottom" secondItem="NuM-2G-Ys8" secondAttribute="bottom" id="ZJF-0y-Mbp"/>
+                            <constraint firstItem="NuM-2G-Ys8" firstAttribute="leading" secondItem="DC4-UO-xp5" secondAttribute="leading" constant="16" id="i5Q-hf-hQH"/>
+                            <constraint firstItem="NuM-2G-Ys8" firstAttribute="top" secondItem="2LX-ev-TnH" secondAttribute="bottom" constant="8" id="j4U-5Z-dLP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IpD-4d-EjL">
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="hcr-GK-Xze"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HpP-OX-nnv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1636" y="748"/>
         </scene>
         <!--Add Folder View Controller-->
         <scene sceneID="fel-ET-Syj">
@@ -218,10 +306,16 @@
             <point key="canvasLocation" x="126" y="-2"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ITP-S3-vpw"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="folder.fill" catalog="system" width="128" height="96"/>
         <image name="folder.fill.badge.plus" catalog="system" width="128" height="92"/>
         <image name="square.and.pencil" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

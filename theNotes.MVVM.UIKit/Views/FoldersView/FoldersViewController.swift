@@ -41,27 +41,13 @@ class FoldersViewController: UIViewController {
     @IBAction func addNote(_ sender: Any) {
     }
     
-    private func setupUI() {
-        title = "Папки"
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
     private func setupTableViewCell() {
         let nib = UINib(nibName: "FolderCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FolderCell")
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddFolder" {
-            guard let editFolderVC = segue.destination as? AddFolderViewController else { return }
-            editFolderVC.delegate = self
-        } else if segue.identifier == "ShowNotes" {
-            guard let notesListVC = segue.destination as? NotesListViewController else { return }
-            notesListVC.viewModel = sender as? NotesListViewModelProtocol
-        }
-    }
     
-    func turnEditing() {
+    private func turnEditing() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
             if self.tableView.isEditing {
                 self.editButton.title = "Править"
@@ -71,6 +57,22 @@ class FoldersViewController: UIViewController {
                 self.tableView.isEditing = true
             }
         }, completion: nil)
+    }
+    
+    private func setupUI() {
+            title = "Папки"
+            navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+// MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddFolder" {
+            guard let editFolderVC = segue.destination as? AddFolderViewController else { return }
+            editFolderVC.delegate = self
+        } else if segue.identifier == "ShowNotes" {
+            guard let notesListVC = segue.destination as? NotesListViewController else { return }
+            notesListVC.viewModel = sender as? NotesListViewModelProtocol
+        }
     }
 }
 
@@ -95,7 +97,7 @@ extension FoldersViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "ShowNotes", sender: viewModel)
     }
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = viewModel.deleteAction(at: indexPath)
         let rename = viewModel.renameAction(at: indexPath, viewController: self)
         
@@ -103,6 +105,11 @@ extension FoldersViewController: UITableViewDelegate, UITableViewDataSource {
         swipe.performsFirstActionWithFullSwipe = false
         return swipe
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    }
+    
+
 }
 
 // MARK: - FoldersViewControllerDelegate

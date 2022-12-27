@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E020987D2957D481002AC9CB /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E020987C2957D481002AC9CB /* CalendarHelper.swift */; };
 		E035A7A229565A90003D2AB3 /* AddFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E035A7A129565A90003D2AB3 /* AddFolderViewController.swift */; };
 		E07942032954A9C1005A0CC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07942022954A9C1005A0CC2 /* AppDelegate.swift */; };
 		E07942052954A9C1005A0CC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07942042954A9C1005A0CC2 /* SceneDelegate.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E020987C2957D481002AC9CB /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		E035A7A129565A90003D2AB3 /* AddFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewController.swift; sourceTree = "<group>"; };
 		E07941FF2954A9C1005A0CC2 /* theNotes.MVVM.UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theNotes.MVVM.UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07942022954A9C1005A0CC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				E079423E2954B52F005A0CC2 /* StorageManager.swift */,
+				E020987C2957D481002AC9CB /* CalendarHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				E07942072954A9C1005A0CC2 /* FoldersViewController.swift in Sources */,
 				E0FDB49D2957595000350864 /* AddFolderViewModel.swift in Sources */,
 				E07942252954ADF3005A0CC2 /* FolderCellViewModel.swift in Sources */,
+				E020987D2957D481002AC9CB /* CalendarHelper.swift in Sources */,
 				E07942032954A9C1005A0CC2 /* AppDelegate.swift in Sources */,
 				E07942432954C233005A0CC2 /* Note.swift in Sources */,
 				E07942412954C204005A0CC2 /* NotesFolder.swift in Sources */,

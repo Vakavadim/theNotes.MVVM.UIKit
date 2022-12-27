@@ -11,11 +11,11 @@ import RealmSwift
 protocol NotesListViewModelProtocol {
     var folderName: String { get }
     func getNotesCount() -> Int
+    func getNoteCellViewModel(at indexPath: IndexPath) -> NoteCellViewModelProtocol
     init(notesFolder: NotesFolder)
 }
 
 class NotesListViewModel: NotesListViewModelProtocol {
-    
     private var folder: NotesFolder
     
     var folderName: String {
@@ -26,6 +26,9 @@ class NotesListViewModel: NotesListViewModelProtocol {
         folder.notes.count
     }
     
+    func getNoteCellViewModel(at indexPath: IndexPath) -> NoteCellViewModelProtocol {
+        NoteCellViewModel(note: folder.notes[indexPath.row])
+    }
     required init(notesFolder: NotesFolder) {
         self.folder = notesFolder
     }
