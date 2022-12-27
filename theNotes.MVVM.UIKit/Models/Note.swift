@@ -11,5 +11,5 @@ import RealmSwift
 class Note: Object {
     @Persisted var noteName: String
     @Persisted var date: Date
-    @Persisted var note: String
+    @Persisted var note: Data
 }

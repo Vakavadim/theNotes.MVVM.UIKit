@@ -31,6 +31,12 @@
 		E079423F2954B52F005A0CC2 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079423E2954B52F005A0CC2 /* StorageManager.swift */; };
 		E07942412954C204005A0CC2 /* NotesFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07942402954C204005A0CC2 /* NotesFolder.swift */; };
 		E07942432954C233005A0CC2 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07942422954C233005A0CC2 /* Note.swift */; };
+		E0D5E071295B5B4D0029F6EA /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5E070295B5B4D0029F6EA /* NoteEditorView.swift */; };
+		E0D5E073295B70170029F6EA /* NoteEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5E072295B70170029F6EA /* NoteEditorViewModel.swift */; };
+		E0D5E076295B772A0029F6EA /* RichTextKit in Frameworks */ = {isa = PBXBuildFile; productRef = E0D5E075295B772A0029F6EA /* RichTextKit */; };
+		E0D5E078295B798A0029F6EA /* ViewDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5E077295B798A0029F6EA /* ViewDebug.swift */; };
+		E0D5E080295B7A870029F6EA /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5E07F295B7A870029F6EA /* AboutScreen.swift */; };
+		E0D5E082295B7A990029F6EA /* Image+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D5E081295B7A990029F6EA /* Image+Demo.swift */; };
 		E0FDB49D2957595000350864 /* AddFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FDB49C2957595000350864 /* AddFolderViewModel.swift */; };
 		E0FDB4A029575AA700350864 /* FolderImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FDB49F29575AA700350864 /* FolderImageCell.swift */; };
 		E0FDB4A42957810000350864 /* FolderImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FDB4A32957810000350864 /* FolderImageCellViewModel.swift */; };
@@ -61,6 +67,11 @@
 		E079423E2954B52F005A0CC2 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E07942402954C204005A0CC2 /* NotesFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesFolder.swift; sourceTree = "<group>"; };
 		E07942422954C233005A0CC2 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		E0D5E070295B5B4D0029F6EA /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
+		E0D5E072295B70170029F6EA /* NoteEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorViewModel.swift; sourceTree = "<group>"; };
+		E0D5E077295B798A0029F6EA /* ViewDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDebug.swift; sourceTree = "<group>"; };
+		E0D5E07F295B7A870029F6EA /* AboutScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
+		E0D5E081295B7A990029F6EA /* Image+Demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Demo.swift"; sourceTree = "<group>"; };
 		E0FDB49C2957595000350864 /* AddFolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderViewModel.swift; sourceTree = "<group>"; };
 		E0FDB49F29575AA700350864 /* FolderImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderImageCell.swift; sourceTree = "<group>"; };
 		E0FDB4A32957810000350864 /* FolderImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderImageCellViewModel.swift; sourceTree = "<group>"; };
@@ -73,6 +84,7 @@
 			files = (
 				E079423D2954B469005A0CC2 /* RealmSwift in Frameworks */,
 				E079423B2954B469005A0CC2 /* Realm in Frameworks */,
+				E0D5E076295B772A0029F6EA /* RichTextKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +146,7 @@
 				E079421C2954AD2E005A0CC2 /* FoldersView */,
 				E035A7A029565A17003D2AB3 /* AddFolderView */,
 				E07942262954AEA2005A0CC2 /* NotesListView */,
+				E0D5E06F295B5B230029F6EA /* NoteEditorView */,
 				E07942322954B006005A0CC2 /* NoteDetailView */,
 			);
 			path = Views;
@@ -161,6 +174,9 @@
 			isa = PBXGroup;
 			children = (
 				E079420B2954A9C2005A0CC2 /* Assets.xcassets */,
+				E0D5E077295B798A0029F6EA /* ViewDebug.swift */,
+				E0D5E081295B7A990029F6EA /* Image+Demo.swift */,
+				E0D5E07F295B7A870029F6EA /* AboutScreen.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -223,6 +239,15 @@
 			path = NoteDetailView;
 			sourceTree = "<group>";
 		};
+		E0D5E06F295B5B230029F6EA /* NoteEditorView */ = {
+			isa = PBXGroup;
+			children = (
+				E0D5E070295B5B4D0029F6EA /* NoteEditorView.swift */,
+				E0D5E072295B70170029F6EA /* NoteEditorViewModel.swift */,
+			);
+			path = NoteEditorView;
+			sourceTree = "<group>";
+		};
 		E0FDB49E295759D700350864 /* FolderImageCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +276,7 @@
 			packageProductDependencies = (
 				E079423A2954B469005A0CC2 /* Realm */,
 				E079423C2954B469005A0CC2 /* RealmSwift */,
+				E0D5E075295B772A0029F6EA /* RichTextKit */,
 			);
 			productName = theNotes.MVVM.UIKit;
 			productReference = E07941FF2954A9C1005A0CC2 /* theNotes.MVVM.UIKit.app */;
@@ -282,6 +308,7 @@
 			mainGroup = E07941F62954A9C1005A0CC2;
 			packageReferences = (
 				E07942392954B469005A0CC2 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				E0D5E074295B772A0029F6EA /* XCRemoteSwiftPackageReference "RichTextKit" */,
 			);
 			productRefGroup = E07942002954A9C1005A0CC2 /* Products */;
 			projectDirPath = "";
@@ -313,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E07942312954AF9F005A0CC2 /* NoteCellViewModel.swift in Sources */,
+				E0D5E078295B798A0029F6EA /* ViewDebug.swift in Sources */,
 				E079421E2954AD77005A0CC2 /* FoldersViewModel.swift in Sources */,
 				E07942072954A9C1005A0CC2 /* FoldersViewController.swift in Sources */,
 				E0FDB49D2957595000350864 /* AddFolderViewModel.swift in Sources */,
@@ -323,6 +351,8 @@
 				E07942412954C204005A0CC2 /* NotesFolder.swift in Sources */,
 				E079422A2954AF24005A0CC2 /* NotesListViewModel.swift in Sources */,
 				E0FDB4A029575AA700350864 /* FolderImageCell.swift in Sources */,
+				E0D5E073295B70170029F6EA /* NoteEditorViewModel.swift in Sources */,
+				E0D5E082295B7A990029F6EA /* Image+Demo.swift in Sources */,
 				E07942362954B06C005A0CC2 /* NoteDetailViewController.swift in Sources */,
 				E07942222954ADD2005A0CC2 /* FolderCell.swift in Sources */,
 				E035A7A229565A90003D2AB3 /* AddFolderViewController.swift in Sources */,
@@ -330,8 +360,10 @@
 				E079422E2954AF86005A0CC2 /* NoteCell.swift in Sources */,
 				E07942052954A9C1005A0CC2 /* SceneDelegate.swift in Sources */,
 				E0FDB4A42957810000350864 /* FolderImageCellViewModel.swift in Sources */,
+				E0D5E080295B7A870029F6EA /* AboutScreen.swift in Sources */,
 				E07942282954AF08005A0CC2 /* NotesListViewController.swift in Sources */,
 				E079423F2954B52F005A0CC2 /* StorageManager.swift in Sources */,
+				E0D5E071295B5B4D0029F6EA /* NoteEditorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +597,14 @@
 				minimumVersion = 10.33.0;
 			};
 		};
+		E0D5E074295B772A0029F6EA /* XCRemoteSwiftPackageReference "RichTextKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielsaidi/RichTextKit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -577,6 +617,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E07942392954B469005A0CC2 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		E0D5E075295B772A0029F6EA /* RichTextKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E0D5E074295B772A0029F6EA /* XCRemoteSwiftPackageReference "RichTextKit" */;
+			productName = RichTextKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

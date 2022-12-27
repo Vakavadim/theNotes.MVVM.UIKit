@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import RichTextKit
 
 final class StorageManager {
     
@@ -58,7 +59,14 @@ final class StorageManager {
             
             let note = Note()
             note.noteName = "Добро пожаловать в заметки"
-            note.note = "В этом приложении вы можете создавать заметки и распределять их по папкам"
+            
+            let NoteAttributedString = NSAttributedString(string: "В этом приложении вы можете создавать заметки и распределять их по папкам")
+            do {
+                let data = try NoteAttributedString.richTextData(for: .archivedData)
+                note.note = data
+            } catch let error {
+                print("Error: \(error)")
+            }
             
             folder.notes.append(note)
             saveNotesFolder(folder)

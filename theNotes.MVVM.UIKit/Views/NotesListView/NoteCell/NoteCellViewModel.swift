@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import RichTextKit
 
 protocol NoteCellViewModelProtocol {
     var noteTitle: String { get }
-    var noteText: String { get }
-    var notePreview: String { get }
+    var noteText: NSAttributedString { get }
+    var notePreview: NSAttributedString { get }
     var date: Date { get }
     init(note: Note)
 }
@@ -23,16 +24,20 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
         note.noteName
     }
     
-    var noteText: String {
-        note.note
+    var noteText: NSAttributedString {
+        do {
+            let richTextView = try! RichTextView(data: note.note)
+            return richTextView.richText
+        }
+        
     }
     
     var date: Date {
         note.date
     }
     
-    var notePreview: String {
-        "\(CalendarHelper.shared.getDateString(date: date)) \(noteText)"
+    var notePreview: NSAttributedString {
+        NSAttributedString(string: "\(CalendarHelper.shared.getDateString(date: date)) \(noteText)")
     }
     
     required init(note: Note) {

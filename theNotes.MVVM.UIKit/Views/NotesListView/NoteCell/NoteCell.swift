@@ -15,7 +15,7 @@ class NoteCell: UITableViewCell {
     var viewModel: NoteCellViewModelProtocol! {
         didSet {
             titleLabel.text = viewModel.noteTitle
-            noteTextLable.text = viewModel.notePreview
+            noteTextLable.attributedText = viewModel.notePreview
         }
     }
     
