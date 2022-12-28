@@ -10,14 +10,12 @@ import UIKit
 class NoteCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var noteTextLable: UILabel!
+    @IBOutlet weak var notePreviewLabel: UILabel!
     
     var viewModel: NoteCellViewModelProtocol! {
         didSet {
             titleLabel.text = viewModel.noteTitle
-            noteTextLable.attributedText = viewModel.notePreview
+            notePreviewLabel.attributedText = viewModel.notePreview
         }
     }
-    
-    
 }

@@ -10,41 +10,38 @@ import SwiftUI
 
 struct NoteEditorView: View {
     
-    @StateObject var viewModel: NoteEditorViewModel {
-        didSet {
-            noteTitile = viewModel.note.noteName
-            do {
-                let richTextView = try! RichTextView(data: viewModel.note.note)
-                text = richTextView.richText
-            }
-        }
-    }
+    @StateObject var viewModel: NoteEditorViewModel
     @StateObject var context = RichTextContext()
     
-    @State var text = NSAttributedString.empty
-    @State var noteTitile = ""
+    @State var buttonTitile = "Сохранить"
 
-    
     var body: some View {
         VStack {
             noteTitieTextField.padding(.horizontal, 8)
-            editor.padding(8)
+            editor
+                .padding(8)
             toolbar
         }
         .background(Color.primary.opacity(0.15))
         .navigationTitle(viewModel.folderName)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button("Готово", action: {})
+                Button(buttonTitile, action: doneAction)
             }
         }
         .viewDebug()
     }
+    
+    private func doneAction() {
+        viewModel.saveNote()
+        buttonTitile = "Готово"
+    }
+
 }
 
 private extension NoteEditorView {
     var editor: some View {
-        RichTextEditor(text: $text, context: context) {
+        RichTextEditor(text: $viewModel.noteText, context: context) {
             $0.textContentInset = CGSize(width: 10, height: 20)
         }
         .background(Color(.white))
@@ -63,18 +60,12 @@ private extension NoteEditorView {
     var noteTitieTextField: some View {
         ZStack{
             Color(.white)
-            TextField("", text: $noteTitile)
+            TextField("", text: $viewModel.noteTitle)
                 .fontWeight(.medium)
                 .offset(CGSize(width: 16, height: 0))
         }
         .frame(height: 44)
         .border(.white, width: 1)
         .cornerRadius(5)
-    }
-}
-
-struct NoteEditorView_Previews: PreviewProvider {
-    static var previews: some View {
-        NoteEditorView(viewModel: NoteEditorViewModel(note: Note(), folderName: "FolderName"))
     }
 }

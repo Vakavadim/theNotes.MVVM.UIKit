@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class Note: Object {
-    @Persisted var noteName: String
+    @Persisted var noteTitle: String
     @Persisted var date: Date
     @Persisted var note: Data
 }

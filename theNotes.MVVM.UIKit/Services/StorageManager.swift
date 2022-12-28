@@ -50,6 +50,13 @@ final class StorageManager {
         }
     }
     
+    func editNote(_ note: Note, with newTitle: String, and newNote: Data) {
+        try! realm.write {
+            note.noteTitle = newTitle
+            note.note = newNote
+        }
+    }
+    
     
     func setStartFolder(exactCountOfNote: Int) {
         if exactCountOfNote == 0 {
@@ -58,7 +65,7 @@ final class StorageManager {
             folder.folderImage = "folder.fill"
             
             let note = Note()
-            note.noteName = "Добро пожаловать в заметки"
+            note.noteTitle = "Добро пожаловать в заметки"
             
             let NoteAttributedString = NSAttributedString(string: "В этом приложении вы можете создавать заметки и распределять их по папкам")
             do {

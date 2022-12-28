@@ -11,35 +11,40 @@ class NotesListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var viewModel: NotesListViewModelProtocol!
+    weak var delegate: FoldersViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupTableViewCell()
     }
     
-    
-    @IBSegueAction func editNote(_ coder: NSCoder, sender: Any?, segueIdentifier: String?) -> UIViewController? {
-
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+        delegate?.reloadTableViewData()
     }
     
     @IBSegueAction func openNoteEditorView(_ coder: NSCoder) -> UIViewController? {
-        
-        return UIHostingController(coder: coder, rootView: NoteEditorView(viewModel: self.viewModel.getNoteEditorViewModelForNewNote()))
-        
+        guard let indexPath = tableView.indexPathForSelectedRow else { return nil}
+        return UIHostingController(coder: coder, rootView: NoteEditorView(
+            viewModel: NoteEditorViewModel(
+                noteData: self.viewModel.getNoteData(at: indexPath)
+                )
+            )
+        )
+    }
+    @IBSegueAction func addNewNote(_ coder: NSCoder) -> UIViewController? {
+        return UIHostingController(coder: coder, rootView: NoteEditorView(
+            viewModel: NoteEditorViewModel(
+                noteData: self.viewModel.getNoteDataForNewNote()
+                )
+            )
+        )
     }
     
     private func setupUI() {
         title = viewModel.folderName
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-    
-    private func setupTableViewCell() {
-        let nib = UINib(nibName: "NoteCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "NoteCell")
-    }
-    
-    
 }
 
 extension NotesListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -52,6 +57,10 @@ extension NotesListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = cell as? NoteCell else { return UITableViewCell() }
         cell.viewModel = viewModel.getNoteCellViewModel(at: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

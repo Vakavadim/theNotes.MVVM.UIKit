@@ -21,7 +21,7 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     private var note: Note!
     
     var noteTitle: String {
-        note.noteName
+        note.noteTitle
     }
     
     var noteText: NSAttributedString {
@@ -29,7 +29,6 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
             let richTextView = try! RichTextView(data: note.note)
             return richTextView.richText
         }
-        
     }
     
     var date: Date {

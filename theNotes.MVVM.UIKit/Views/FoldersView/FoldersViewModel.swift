@@ -16,6 +16,7 @@ protocol FoldersViewModelProtocol {
     func setStartedFolder()
     func getCurrentFolder(at indexPath: IndexPath) -> NotesFolder
     func getFolderCellViewModel(at indexPath: IndexPath) -> FolderCellViewModelProtocol
+    func getNoteDataForNewNote() -> NoteData
     func deleteAction(at indexPath: IndexPath) -> UIContextualAction
     func renameAction(at indexPath: IndexPath, viewController: UIViewController) -> UIContextualAction
     func renameFolder(at indexPath: IndexPath, viewController: UIViewController)
@@ -111,6 +112,13 @@ class FoldersViewModel: FoldersViewModelProtocol {
             folderNameTextField.selectAll(nil)
         }
         viewController.present(alert, animated: true)
+    }
+    
+    func getNoteDataForNewNote() -> NoteData {
+        let notesFolders = StorageManager.shared.realm.objects(NotesFolder.self)
+        let folder = notesFolders.first!
+        let data = NoteData(noteTitle: "", noteText: NSAttributedString.empty, noteFolder: folder.folderName, isNewNote: true, folder: folder, note: Note())
+        return data
     }
 }
 

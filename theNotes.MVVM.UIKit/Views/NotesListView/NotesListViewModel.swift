@@ -7,19 +7,21 @@
 
 import Foundation
 import RealmSwift
+import RichTextKit
 
 protocol NotesListViewModelProtocol {
     var folderName: String { get }
     func getNotesCount() -> Int
     func getNoteCellViewModel(at indexPath: IndexPath) -> NoteCellViewModelProtocol
-    func getNoteEditorViewModelForNewNote() -> NoteEditorViewModel
-    func getNoteEditorViewModel(at indexPath: IndexPath) -> NoteEditorViewModel
+    func getNoteDataForNewNote() -> NoteData
+    func getNoteData(at indexPath: IndexPath) -> NoteData
     init(notesFolder: NotesFolder)
 }
 
 class NotesListViewModel: NotesListViewModelProtocol {
     
     
+
     private var folder: NotesFolder
     
     var folderName: String {
@@ -33,13 +35,26 @@ class NotesListViewModel: NotesListViewModelProtocol {
     func getNoteCellViewModel(at indexPath: IndexPath) -> NoteCellViewModelProtocol {
         NoteCellViewModel(note: folder.notes[indexPath.row])
     }
-    
-    func getNoteEditorViewModelForNewNote() -> NoteEditorViewModel {
-        NoteEditorViewModel(note: Note(), folderName: folderName)
+   
+    func getNoteDataForNewNote() -> NoteData {
+        let data = NoteData(noteTitle: "", noteText: NSAttributedString.empty, noteFolder: folderName, isNewNote: true, folder: folder, note: Note())
+        return data
     }
     
-    func getNoteEditorViewModel(at indexPath: IndexPath) -> NoteEditorViewModel {
-        NoteEditorViewModel(note: folder.notes[indexPath.row], folderName: folderName)
+    func getNoteData(at indexPath: IndexPath) -> NoteData {
+        var noteText = NSAttributedString.empty
+        do {
+            let richTextView = try! RichTextView(data: folder.notes[indexPath.row].note)
+            noteText = richTextView.richText
+        }
+        let data = NoteData(noteTitle:  folder.notes[indexPath.row].noteTitle,
+                            noteText: noteText,
+                            noteFolder: folderName,
+                            isNewNote: false,
+                            folder: folder,
+                            note: folder.notes[indexPath.row]
+            )
+        return data
     }
     
     required init(notesFolder: NotesFolder) {

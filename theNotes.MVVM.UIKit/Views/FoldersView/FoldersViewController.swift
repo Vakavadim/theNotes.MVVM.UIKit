@@ -5,7 +5,7 @@
 //  Created by Вадим Гамзаев on 22.12.2022.
 //
 
-import UIKit
+import SwiftUI
 
 protocol FoldersViewControllerDelegate: AnyObject {
     func reloadTableViewData()
@@ -33,6 +33,14 @@ class FoldersViewController: UIViewController {
         viewModel = FoldersViewModel()
     }
     
+    @IBSegueAction func addNewNote(_ coder: NSCoder) -> UIViewController? {
+        return UIHostingController(coder: coder, rootView: NoteEditorView(
+            viewModel: NoteEditorViewModel(
+                noteData: self.viewModel.getNoteDataForNewNote()
+                )
+            )
+        )
+    }
     @IBAction func editButton(_ sender: Any) {
         turnEditing()
     }
@@ -72,6 +80,7 @@ class FoldersViewController: UIViewController {
         } else if segue.identifier == "ShowNotes" {
             guard let notesListVC = segue.destination as? NotesListViewController else { return }
             notesListVC.viewModel = sender as? NotesListViewModelProtocol
+            notesListVC.delegate = self
         }
     }
 }
