@@ -43,6 +43,7 @@ class NoteEditorViewModel: ObservableObject {
         }
     }
     
+    
     init(noteData: NoteData) {
         self.noteTitle = noteData.noteTitle
         self.noteText = noteData.noteText
