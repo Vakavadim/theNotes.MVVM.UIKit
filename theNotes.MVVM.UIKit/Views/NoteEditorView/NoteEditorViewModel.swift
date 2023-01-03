@@ -17,6 +17,7 @@ class NoteEditorViewModel: ObservableObject {
     private var isNewNote: Bool
     
     func saveNote() {
+        guard case let noteTitle = self.noteTitle, !noteTitle.isEmpty else { return }
         if isNewNote {
             let note = note
             note.noteTitle = self.noteTitle

@@ -12,10 +12,16 @@ class NotesListViewController: UIViewController {
     
     var viewModel: NotesListViewModelProtocol!
     weak var delegate: FoldersViewControllerDelegate?
+    
+    private var hostingView: UIHostingController<NoteEditorView>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("dismissSwiftUI"), object: nil, queue: nil) { (_) in
+            self.hostingView!.dismiss(animated: true, completion: nil)
+            print("dismissSwiftUI")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -25,20 +31,22 @@ class NotesListViewController: UIViewController {
     
     @IBSegueAction func openNoteEditorView(_ coder: NSCoder) -> UIViewController? {
         guard let indexPath = tableView.indexPathForSelectedRow else { return nil}
-        return UIHostingController(coder: coder, rootView: NoteEditorView(
-            viewModel: NoteEditorViewModel(
-                noteData: self.viewModel.getNoteData(at: indexPath)
-                )
+        let noteEditorViewModel = NoteEditorViewModel(noteData: self.viewModel.getNoteData(at: indexPath))
+        let noteEditorView = NoteEditorView(
+            viewModel: noteEditorViewModel
             )
-        )
+        let hostingView = UIHostingController(coder: coder, rootView: noteEditorView)
+        self.hostingView = hostingView
+        return hostingView
     }
     @IBSegueAction func addNewNote(_ coder: NSCoder) -> UIViewController? {
-        return UIHostingController(coder: coder, rootView: NoteEditorView(
-            viewModel: NoteEditorViewModel(
-                noteData: self.viewModel.getNoteDataForNewNote()
-                )
+        let noteEditorViewModel = NoteEditorViewModel(noteData: self.viewModel.getNoteDataForNewNote())
+        let noteEditorView = NoteEditorView(
+            viewModel: noteEditorViewModel
             )
-        )
+        let hostingView = UIHostingController(coder: coder, rootView: noteEditorView)
+        self.hostingView = hostingView
+        return hostingView
     }
     
     private func setupUI() {

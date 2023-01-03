@@ -34,7 +34,7 @@ struct NoteEditorView: View {
     
     private func doneAction() {
         viewModel.saveNote()
-        buttonTitile = "Готово"
+        NotificationCenter.default.post(name: NSNotification.Name("dismissSwiftUI"), object: nil)
     }
 
 }
