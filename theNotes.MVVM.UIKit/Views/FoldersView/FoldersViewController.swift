@@ -55,7 +55,6 @@ class FoldersViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: "FolderCell")
     }
     
-    
     private func turnEditing() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
             if self.tableView.isEditing {
