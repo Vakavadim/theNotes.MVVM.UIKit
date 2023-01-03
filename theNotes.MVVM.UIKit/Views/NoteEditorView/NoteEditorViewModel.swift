@@ -30,14 +30,16 @@ class NoteEditorViewModel: ObservableObject {
             StorageManager.shared.saveNote(note, for: folder)
         } else {
             let note = note
-            note.noteTitle = self.noteTitle
+            var archivedData: Data?
             do {
                 let data = try noteText.richTextData(for: .archivedData)
-                note.note = data
+                archivedData = data
             } catch let error {
                 print("Error: \(error)")
             }
-            StorageManager.shared.editNote(note, with: noteTitle, and: note.note)
+            guard let archivedData = archivedData else { return }
+            StorageManager.shared.editNote(note, with: noteTitle, and: archivedData)
+            print("Edit note")
         }
     }
     
